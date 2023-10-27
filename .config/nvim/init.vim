@@ -19,7 +19,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
+Plug 'arcticeicestudio/nord-vim'
 call plug#end()
+
+colorscheme nord
 
 set title
 set bg=light
