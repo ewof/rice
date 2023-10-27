@@ -22,8 +22,6 @@ Plug 'ap/vim-css-color'
 Plug 'nordtheme/vim'
 call plug#end()
 
-colorscheme nord
-
 set title
 set bg=light
 set go=a
@@ -42,6 +40,7 @@ colorscheme vim
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	colorscheme nord
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
