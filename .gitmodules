@@ -1,3 +1,6 @@
 [submodule ".config/mpv/script_modules/mpvSockets"]
 	path = .config/mpv/script_modules/mpvSockets
 	url = https://github.com/wis/mpvSockets.git
+[submodule ".tmux/themes/nord-tmux"]
+	path = .tmux/themes/nord-tmux
+	url = https://github.com/nordtheme/tmux
