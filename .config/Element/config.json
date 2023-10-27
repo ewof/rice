@@ -1,0 +1,58 @@
+{
+  "features": {
+    "feature_custom_themes": true
+  },
+  "settingDefaults": {
+    "custom_themes": [
+      {
+        "name": "Nord dark theme",
+        "is_dark": true,
+        "colors": {
+          "accent-color": "#a3be8c",
+          "primary-color": "#88c0d0",
+          "warning-color": "#bf616a",
+
+          "sidebar-color": "#2e3440",
+          "roomlist-background-color": "#3b4252",
+          "roomlist-text-color": "#ebcb8b",
+          "roomlist-text-secondary-color": "#e5e9f0",
+          "roomlist-highlights-color": "#2e3440",
+          "roomlist-separator-color": "#434c5e",
+
+          "timeline-background-color": "#434c5e",
+          "timeline-text-color": "#eceff4",
+          "secondary-content": "#eceff4",
+          "tertiary-content": "#eceff4",
+          "timeline-text-secondary-color": "#81a1c1",
+          "timeline-highlights-color": "#3b4252",
+          "reaction-row-button-selected-bg-color": "#bf616a"
+        }
+      },
+      {
+        "name": "Nord light theme",
+        "is_dark": false,
+        "colors": {
+          "accent-color": "#a3be8c",
+          "primary-color": "#5e81ac",
+          "warning-color": "#bf616a",
+
+          "sidebar-color": "#d8dee9",
+          "roomlist-background-color": "#e5e9f0",
+          "roomlist-text-color": "#d08770",
+          "roomlist-text-secondary-color": "#3b4252",
+          "roomlist-highlights-color": "#eceff4",
+          "roomlist-separator-color": "#eceff4",
+
+          "timeline-background-color": "#eceff4",
+          "timeline-text-color": "#2e3440",
+          "secondary-content": "#2e3440",
+          "tertiary-content": "#2e3440",
+          "timeline-text-secondary-color": "#3b4252",
+          "timeline-highlights-color": "#e5e9f0",
+          "reaction-row-button-selected-bg-color": "#bf616a"
+        }
+      }
+    ]
+  },
+  "show_labs_settings": true
+}
