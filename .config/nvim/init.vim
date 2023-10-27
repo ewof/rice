@@ -19,7 +19,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
-Plug 'nordtheme/nord-vim'
+Plug 'nordtheme/vim'
 call plug#end()
 
 colorscheme nord
