@@ -6,6 +6,7 @@
 xrandr --dpi 96		# Set DPI. User may want to use a larger number for larger screens.
 setbg &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
+xset r rate 300 50 &	# Speed xrate up
 
 autostart="mpd xcompmgr dunst unclutter pipewire remapd"
 
