@@ -65,7 +65,7 @@
             "enabled": false
         },
         "AnonymiseFileNames": {
-            "enabled": false
+            "enabled": true
         },
         "BANger": {
             "enabled": false
@@ -86,7 +86,7 @@
             "enabled": true
         },
         "BiggerStreamPreview": {
-            "enabled": false
+            "enabled": true
         },
         "BlurNSFW": {
             "enabled": false
@@ -116,9 +116,6 @@
         "Dearrow": {
             "enabled": false
         },
-        "DisableDMCallIdle": {
-            "enabled": true
-        },
         "EmoteCloner": {
             "enabled": true
         },
@@ -137,7 +134,9 @@
             "transformEmojis": true,
             "transformCompoundSentence": false,
             "stickerSize": 160,
-            "emojiSize": 48
+            "emojiSize": 48,
+            "useHyperLinks": true,
+            "hyperLinkText": "{{NAME}}"
         },
         "FakeProfileThemes": {
             "enabled": true,
@@ -147,7 +146,8 @@
             "enabled": true
         },
         "FavoriteGifSearch": {
-            "enabled": true
+            "enabled": true,
+            "searchOption": "hostandpath"
         },
         "FixSpotifyEmbeds": {
             "enabled": true
@@ -159,7 +159,8 @@
             "enabled": false
         },
         "GameActivityToggle": {
-            "enabled": true
+            "enabled": true,
+            "oldIcon": false
         },
         "GifPaste": {
             "enabled": false
@@ -179,7 +180,7 @@
         "ImageZoom": {
             "enabled": true,
             "size": 200,
-            "zoom": 2.8550000000000018,
+            "zoom": 3.4000000000000004,
             "nearestNeighbour": false,
             "square": false,
             "zoomSpeed": 0.5,
@@ -216,7 +217,9 @@
             "ignoreSelf": false,
             "ignoreUsers": "",
             "ignoreChannels": "",
-            "ignoreGuilds": ""
+            "ignoreGuilds": "",
+            "logEdits": true,
+            "logDeletes": true
         },
         "MessageTags": {
             "enabled": false
@@ -231,9 +234,6 @@
             "enabled": false
         },
         "Moyai": {
-            "enabled": false
-        },
-        "MuteNewGuild": {
             "enabled": false
         },
         "MutualGroupDMs": {
@@ -282,7 +282,7 @@
             "enabled": false
         },
         "OpenInApp": {
-            "enabled": false,
+            "enabled": true,
             "spotify": true,
             "steam": true,
             "epic": true
@@ -330,7 +330,7 @@
             "enabled": false
         },
         "ReactErrorDecoder": {
-            "enabled": false
+            "enabled": true
         },
         "ReadAllNotificationsButton": {
             "enabled": true
@@ -341,13 +341,14 @@
             "groups": true,
             "servers": true,
             "friends": true,
-            "friendRequestCancels": true
+            "friendRequestCancels": true,
+            "notices": false
         },
         "RevealAllSpoilers": {
             "enabled": false
         },
         "ReverseImageSearch": {
-            "enabled": false
+            "enabled": true
         },
         "RoleColorEverywhere": {
             "enabled": false
@@ -359,7 +360,8 @@
             "enabled": false
         },
         "SendTimestamps": {
-            "enabled": true
+            "enabled": true,
+            "replaceMessageContents": true
         },
         "ServerListIndicators": {
             "enabled": false
@@ -426,7 +428,9 @@
         },
         "Translate": {
             "enabled": true,
-            "autoTranslate": false
+            "autoTranslate": false,
+            "receivedInput": "auto",
+            "receivedOutput": "en"
         },
         "TypingIndicator": {
             "enabled": false
@@ -477,7 +481,7 @@
             "multiplier": 2
         },
         "WhoReacted": {
-            "enabled": false
+            "enabled": true
         },
         "Wikisearch": {
             "enabled": false
@@ -486,6 +490,60 @@
             "enabled": false
         },
         "NoTypingAnimation": {
+            "enabled": false
+        },
+        "SuperReactionTweaks": {
+            "enabled": false
+        },
+        "ClientTheme": {
+            "enabled": false
+        },
+        "FixImagesQuality": {
+            "enabled": false
+        },
+        "Decor": {
+            "enabled": false
+        },
+        "NotificationVolume": {
+            "enabled": false
+        },
+        "XSOverlay": {
+            "enabled": false
+        },
+        "BetterGifPicker": {
+            "enabled": true
+        },
+        "FixCodeblockGap": {
+            "enabled": false
+        },
+        "ReviewDB": {
+            "enabled": true
+        },
+        "FixYoutubeEmbeds": {
+            "enabled": false
+        },
+        "ChatInputButtonAPI": {
+            "enabled": true
+        },
+        "DisableCallIdle": {
+            "enabled": true
+        },
+        "NewGuildSettings": {
+            "enabled": false
+        },
+        "BetterRoleContext": {
+            "enabled": true
+        },
+        "FriendsSince": {
+            "enabled": false
+        },
+        "ResurrectHome": {
+            "enabled": false
+        },
+        "BetterSettings": {
+            "enabled": false
+        },
+        "OverrideForumDefaults": {
             "enabled": false
         }
     },
@@ -499,6 +557,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1698365623204
+        "settingsSyncVersion": 1712520113978
     }
 }
