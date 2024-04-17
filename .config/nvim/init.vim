@@ -11,15 +11,17 @@ map ,, :keepp /<++><CR>ca<
 imap ,, <esc>:keepp /<++><CR>ca<
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'vimwiki/vimwiki'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'nordtheme/vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 set title
@@ -30,9 +32,27 @@ set nohlsearch
 set clipboard+=unnamedplus
 set noshowmode
 set noruler
-set laststatus=0
+set laststatus=2
 set noshowcmd
 colorscheme vim
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    nmap <buffer> gi <plug>(lsp-definition)
+    nmap <buffer> gd <plug>(lsp-declaration)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gl <plug>(lsp-document-diagnostics)
+    nmap <buffer> <f2> <plug>(lsp-rename)
+    nmap <buffer> <f3> <plug>(lsp-hover)
+endfunction
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" let g:lsp_diagnostics_echo_cursor = 1
 
 " Some basics:
 	nnoremap c "_c
@@ -54,19 +74,26 @@ colorscheme vim
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
 
-" Nerd tree
+" lightline:
+	let g:lightline = {
+	      \ 'colorscheme': 'nord',
+	      \ 'active': {
+	      \   'left': [ [ 'mode', 'paste' ],
+	      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+	      \ },
+	      \ 'component_function': {
+	      \   'gitbranch': 'FugitiveHead'
+	      \ },
+	      \ }
+
+" fzf:
+	nnoremap <C-p> :GFiles --exclude-standard --others --cached<CR>
+	nnoremap <leader>p :Tags<CR>
+
+" nerd tree:
 	map <leader>n :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-
-" vim-airline
-	if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
-	endif
-	let g:airline_symbols.colnr = ' C:'
-	let g:airline_symbols.linenr = ' L:'
-	let g:airline_symbols.maxlinenr = ' '
-	let g:airline#extensions#whitespace#symbol = '!'
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
