@@ -34,7 +34,12 @@ set noshowmode
 set noruler
 set laststatus=2
 set noshowcmd
-colorscheme vim
+colorscheme nord
+set shiftwidth=4 smarttab
+set expandtab
+set tabstop=8 softtabstop=8
+set encoding=utf-8
+set number relativenumber
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -58,9 +63,6 @@ augroup END
 	nnoremap c "_c
 	filetype plugin on
 	syntax on
-	set encoding=utf-8
-	set number relativenumber
-	colorscheme nord
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
