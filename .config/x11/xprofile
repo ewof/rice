@@ -16,5 +16,11 @@ for program in $autostart; do
         sleep 0.01
 done >/dev/null 2>&1
 
+LD_LIBRARY_PATH=/usr/lib/pentablet/lib /usr/lib/pentablet/PenTablet.sh >/dev/null 2>&1 &
+sleep 2 && xlsw | grep 'Pentablet' | awk '{print $1}' | while read _windowID; do xdotool windowclose "${_windowID}"; done
+
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)
+
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
