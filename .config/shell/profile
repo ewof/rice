@@ -4,7 +4,7 @@
 # Profile file, runs on login. Environmental variables are set here.
 
 # Add all directories in `~/.local/bin` to $PATH
-export PATH="$PATH:/opt/clangd/bin/:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:/opt/clangd/bin/:/opt/unreal-engine/Engine/Binaries/Linux/:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 unsetopt PROMPT_SP 2>/dev/null
 
