@@ -14,14 +14,24 @@
 ![beach-sunset](beach-sunset.png)
 ### Purple
 ![purple](purple.png)
-### Samourai
-![samourai](samourai.png)
+### Samurai
+![samurai](samurai.png)
 ### Gruvbox
 ![gruvbox](gruvbox.png)
+### Gruvbox Material Dark
+![gruvbox-material-dark](gruvbox-material-dark.png)
 ### Rosé Pine
 ![rosepine](rosepine.png)
 ### Lunar
 ![lunar](lunar.png)
+### Catppuccin Latte
+![catppuccin-latte](catppuccin-latte.png)
+### Catppuccin Frappe
+![catppuccin-frappe](catppuccin-frappe.png)
+### Catppuccin Macchiato
+![catppuccin-macchiato](catppuccin-macchiato.png)
+### Catppuccin Mocha
+![catppuccin-mocha](catppuccin-mocha.png)
 
 ##  Features
 ### Resizable sidebar
@@ -79,7 +89,7 @@ xpui.js_repl_8008 = ,${1}56,
 ```
 
 ## Change Color Schemes
-There are 9 color schemes you can choose: `base`, `white`, `dark`, `dracula`, `nord-dark`, `nord-light`, `beach-sunset`, `samourai`, `purple`. Change scheme with commands:
+There are 9 color schemes you can choose: `base`, `white`, `dark`, `dracula`, `nord-dark`, `nord-light`, `beach-sunset`, `samurai`, `purple`, `gruvbox`, `gruvbox-material-dark`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, and `catppuccin-mocha`. Change scheme with commands:
 ```
 spicetify config color_scheme <scheme name>
 spicetify apply
