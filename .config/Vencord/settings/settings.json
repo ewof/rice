@@ -49,7 +49,8 @@
             "enabled": true
         },
         "NoTrack": {
-            "enabled": true
+            "enabled": true,
+            "disableAnalytics": true
         },
         "Settings": {
             "enabled": true,
@@ -65,7 +66,10 @@
             "enabled": false
         },
         "AnonymiseFileNames": {
-            "enabled": true
+            "enabled": true,
+            "anonymiseByDefault": true,
+            "method": 0,
+            "randomisedLength": 7
         },
         "BANger": {
             "enabled": false
@@ -96,7 +100,7 @@
             "format": "stopwatch"
         },
         "ClearURLs": {
-            "enabled": false
+            "enabled": true
         },
         "ColorSighted": {
             "enabled": false
@@ -120,7 +124,7 @@
             "enabled": true
         },
         "Experiments": {
-            "enabled": false
+            "enabled": true
         },
         "F8Break": {
             "enabled": false
@@ -136,7 +140,8 @@
             "stickerSize": 160,
             "emojiSize": 48,
             "useHyperLinks": true,
-            "hyperLinkText": "{{NAME}}"
+            "hyperLinkText": "{{NAME}}",
+            "disableEmbedPermissionCheck": false
         },
         "FakeProfileThemes": {
             "enabled": true,
@@ -172,15 +177,15 @@
             "enabled": false
         },
         "iLoveSpam": {
-            "enabled": false
+            "enabled": true
         },
         "IgnoreActivities": {
             "enabled": false
         },
         "ImageZoom": {
             "enabled": true,
-            "size": 200,
-            "zoom": 3.4000000000000004,
+            "size": 202.24358974358975,
+            "zoom": 2.8000000000000003,
             "nearestNeighbour": false,
             "square": false,
             "zoomSpeed": 0.5,
@@ -202,13 +207,13 @@
             "enabled": false
         },
         "MemberCount": {
-            "enabled": false
+            "enabled": true
         },
         "MessageClickActions": {
-            "enabled": false
+            "enabled": true
         },
         "MessageLinkEmbeds": {
-            "enabled": false
+            "enabled": true
         },
         "MessageLogger": {
             "enabled": true,
@@ -219,7 +224,9 @@
             "ignoreChannels": "",
             "ignoreGuilds": "",
             "logEdits": true,
-            "logDeletes": true
+            "logDeletes": true,
+            "collapseDeleted": false,
+            "inlineEdits": true
         },
         "MessageTags": {
             "enabled": false
@@ -255,7 +262,7 @@
             "enabled": false
         },
         "NoRPC": {
-            "enabled": false
+            "enabled": true
         },
         "NoReplyMention": {
             "enabled": false
@@ -267,13 +274,13 @@
             "enabled": false
         },
         "NoUnblockToJump": {
-            "enabled": false
+            "enabled": true
         },
         "NormalizeMessageLinks": {
             "enabled": true
         },
         "NSFWGateBypass": {
-            "enabled": false
+            "enabled": true
         },
         "OnePingPerDM": {
             "enabled": false
@@ -285,13 +292,12 @@
             "enabled": true,
             "spotify": true,
             "steam": true,
-            "epic": true
-        },
-        "Party mode 🎉": {
-            "enabled": false
+            "epic": true,
+            "tidal": true,
+            "itunes": true
         },
         "PermissionFreeWill": {
-            "enabled": false
+            "enabled": true
         },
         "PermissionsViewer": {
             "enabled": true,
@@ -299,10 +305,10 @@
             "defaultPermissionsDropdownState": false
         },
         "petpet": {
-            "enabled": false
+            "enabled": true
         },
         "PictureInPicture": {
-            "enabled": false
+            "enabled": true
         },
         "PinDMs": {
             "enabled": false
@@ -327,7 +333,7 @@
             "enabled": false
         },
         "QuickReply": {
-            "enabled": false
+            "enabled": true
         },
         "ReactErrorDecoder": {
             "enabled": true
@@ -353,9 +359,6 @@
         "RoleColorEverywhere": {
             "enabled": false
         },
-        "SearchReply": {
-            "enabled": true
-        },
         "SecretRingToneEnabler": {
             "enabled": false
         },
@@ -366,9 +369,6 @@
         "ServerListIndicators": {
             "enabled": false
         },
-        "ServerProfile": {
-            "enabled": false
-        },
         "ShikiCodeblocks": {
             "enabled": false
         },
@@ -376,7 +376,7 @@
             "enabled": false
         },
         "ShowConnections": {
-            "enabled": false
+            "enabled": true
         },
         "ShowHiddenChannels": {
             "enabled": true,
@@ -385,10 +385,7 @@
             "defaultAllowedUsersAndRolesDropdownState": true
         },
         "ShowMeYourName": {
-            "enabled": false
-        },
-        "ShowTimeouts": {
-            "enabled": false
+            "enabled": true
         },
         "SilentMessageToggle": {
             "enabled": false,
@@ -398,10 +395,11 @@
         "SilentTyping": {
             "enabled": true,
             "showIcon": true,
-            "isEnabled": true
+            "isEnabled": true,
+            "contextMenu": true
         },
         "SortFriendRequests": {
-            "enabled": false
+            "enabled": true
         },
         "SpotifyControls": {
             "enabled": false
@@ -430,10 +428,12 @@
             "enabled": true,
             "autoTranslate": false,
             "receivedInput": "auto",
-            "receivedOutput": "en"
+            "receivedOutput": "en",
+            "showChatBarButton": true,
+            "service": "google"
         },
         "TypingIndicator": {
-            "enabled": false
+            "enabled": true
         },
         "TypingTweaks": {
             "enabled": false
@@ -505,7 +505,7 @@
             "enabled": false
         },
         "NotificationVolume": {
-            "enabled": false
+            "enabled": true
         },
         "XSOverlay": {
             "enabled": false
@@ -517,10 +517,14 @@
             "enabled": false
         },
         "ReviewDB": {
-            "enabled": true
+            "enabled": true,
+            "notifyReviews": true,
+            "showWarning": true,
+            "hideBlockedUsers": true,
+            "hideTimestamps": false
         },
         "FixYoutubeEmbeds": {
-            "enabled": false
+            "enabled": true
         },
         "ChatInputButtonAPI": {
             "enabled": true
@@ -529,13 +533,13 @@
             "enabled": true
         },
         "NewGuildSettings": {
-            "enabled": false
+            "enabled": true
         },
         "BetterRoleContext": {
             "enabled": true
         },
         "FriendsSince": {
-            "enabled": false
+            "enabled": true
         },
         "ResurrectHome": {
             "enabled": false
@@ -545,6 +549,117 @@
         },
         "OverrideForumDefaults": {
             "enabled": false
+        },
+        "UnlockedAvatarZoom": {
+            "enabled": true
+        },
+        "ShowHiddenThings": {
+            "enabled": true
+        },
+        "BetterSessions": {
+            "enabled": false
+        },
+        "ImplicitRelationships": {
+            "enabled": true
+        },
+        "StreamerModeOnStream": {
+            "enabled": false
+        },
+        "ImageLink": {
+            "enabled": true
+        },
+        "PauseInvitesForever": {
+            "enabled": false
+        },
+        "MessageLatency": {
+            "enabled": true
+        },
+        "ReplyTimestamp": {
+            "enabled": true
+        },
+        "VoiceDownload": {
+            "enabled": true
+        },
+        "ShowTimeoutDuration": {
+            "enabled": false
+        },
+        "CtrlEnterSend": {
+            "enabled": false
+        },
+        "NoServerEmojis": {
+            "enabled": false
+        },
+        "ValidReply": {
+            "enabled": true
+        },
+        "PartyMode": {
+            "enabled": false
+        },
+        "AutomodContext": {
+            "enabled": false
+        },
+        "CustomIdle": {
+            "enabled": false
+        },
+        "NoDefaultHangStatus": {
+            "enabled": false
+        },
+        "ReplaceGoogleSearch": {
+            "enabled": false
+        },
+        "DontRoundMyTimestamps": {
+            "enabled": false
+        },
+        "MaskedLinkPaste": {
+            "enabled": false
+        },
+        "Summaries": {
+            "enabled": true
+        },
+        "MessageUpdaterAPI": {
+            "enabled": true
+        },
+        "ServerInfo": {
+            "enabled": true
+        },
+        "AppleMusicRichPresence": {
+            "enabled": false
+        },
+        "CopyEmojiMarkdown": {
+            "enabled": false
+        },
+        "NoOnboardingDelay": {
+            "enabled": false
+        },
+        "UserSettingsAPI": {
+            "enabled": true
+        },
+        "ConsoleJanitor": {
+            "enabled": false
+        },
+        "MentionAvatars": {
+            "enabled": true
+        },
+        "YoutubeAdblock": {
+            "enabled": false
+        },
+        "NoMaskedUrlPaste": {
+            "enabled": true
+        },
+        "AlwaysExpandRoles": {
+            "enabled": false
+        },
+        "CopyFileContents": {
+            "enabled": true
+        },
+        "StickerPaste": {
+            "enabled": false
+        },
+        "AccountPanelServerProfile": {
+            "enabled": false
+        },
+        "FullSearchContext": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -557,6 +672,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1712520113978
+        "settingsSyncVersion": 1728296519726
     }
 }
