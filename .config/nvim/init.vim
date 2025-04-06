@@ -28,7 +28,6 @@ call plug#end()
 
 set title
 set bg=light
-set go=a
 set mouse=a
 set nohlsearch
 set clipboard+=unnamedplus
