@@ -48,3 +48,6 @@ user_pref("ui.context_menus.after_mouseup", true);
 
 // i want muh heckin dark moderino
 user_pref("privacy.resistFingerprinting", false);
+
+// shit is slow without it sometimes
+user_pref("webgl.disabled", false);
