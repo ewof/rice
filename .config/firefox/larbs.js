@@ -49,5 +49,8 @@ defaultPref("ui.context_menus.after_mouseup", true);
 // i want muh heckin dark moderino
 defaultPref("privacy.resistFingerprinting", false);
 
+// i have canvas blocker idc
+defaultPref("privacy.resistFingerprinting.letterboxing", true);
+
 // shit is slow without it sometimes
 defaultPref("webgl.disabled", false);
