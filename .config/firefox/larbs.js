@@ -50,7 +50,7 @@ defaultPref("ui.context_menus.after_mouseup", true);
 defaultPref("privacy.resistFingerprinting", false);
 
 // i have canvas blocker idc
-defaultPref("privacy.resistFingerprinting.letterboxing", true);
+defaultPref("privacy.resistFingerprinting.letterboxing", false);
 
 // shit is slow without it sometimes
 defaultPref("webgl.disabled", false);
