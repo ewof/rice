@@ -15,7 +15,7 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 
 lock(){
     mpc pause
-    pauseallmpv
+    #pauseallmpv
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     kill -44 $(pidof dwmblocks)
     slock
