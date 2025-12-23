@@ -166,7 +166,8 @@
         },
         "GameActivityToggle": {
             "enabled": true,
-            "oldIcon": false
+            "oldIcon": false,
+            "location": "PANEL"
         },
         "GifPaste": {
             "enabled": false
@@ -183,7 +184,7 @@
         "ImageZoom": {
             "enabled": true,
             "size": 202.24358974358975,
-            "zoom": 5.799999999999999,
+            "zoom": 4.6,
             "nearestNeighbour": false,
             "square": false,
             "zoomSpeed": 0.5,
@@ -442,10 +443,14 @@
         "Translate": {
             "enabled": true,
             "autoTranslate": false,
-            "receivedInput": "auto",
-            "receivedOutput": "en",
+            "receivedInput": "",
+            "receivedOutput": "en-us",
             "showChatBarButton": true,
-            "service": "google"
+            "service": "deepl",
+            "deeplApiKey": "",
+            "showAutoTranslateTooltip": true,
+            "sentInput": "",
+            "sentOutput": "en-us"
         },
         "TypingIndicator": {
             "enabled": true,
@@ -519,7 +524,8 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": false
+            "enabled": true,
+            "originalImagesInChat": false
         },
         "Decor": {
             "enabled": false
@@ -740,7 +746,17 @@
             "enabled": false
         },
         "ImageFilename": {
-            "enabled": true
+            "enabled": true,
+            "showFullUrl": false
+        },
+        "AutoDNDWhilePlaying": {
+            "enabled": false
+        },
+        "DevCompanion": {
+            "enabled": false
+        },
+        "OGAS": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -753,7 +769,11 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1758684818696
+        "settingsSyncVersion": 1766460236450
     },
-    "eagerPatches": false
+    "eagerPatches": false,
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }
