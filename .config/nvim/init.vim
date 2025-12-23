@@ -26,6 +26,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
+set notermguicolors
 set title
 set bg=light
 set mouse=a
