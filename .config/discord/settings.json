@@ -1,12 +1,21 @@
 {
+  "DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true,
+  "BACKGROUND_COLOR": "#2c2d32",
+  "openasar": {
+    "setup": true
+  },
+  "offloadAdmControls": true,
+  "enableHardwareAcceleration": true,
+  "chromiumSwitches": {},
+  "asyncVideoInputDeviceInit": false,
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
-    "x": 32,
-    "y": 32,
-    "width": 1616,
-    "height": 1001
+    "x": 30,
+    "y": 30,
+    "width": 1854,
+    "height": 1034
   },
-  "BACKGROUND_COLOR": "#202225",
+  "trayBalloonShown": true,
   "MINIMIZE_TO_TRAY": false
 }
