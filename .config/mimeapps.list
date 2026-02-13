@@ -1,20 +1,21 @@
 [Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/https=librewolf.desktop
+x-scheme-handler/http=librewolf.desktop
+x-www-browser=librewolf.desktop
+video/mp4=mpv.desktop
+text/html=librewolf.desktop
+image/jpeg=nsxiv.desktop
+image/png=userapp-nsxiv-J5F4J3.desktop
+image/gif=nsxiv.desktop
+video/quicktime=mpv.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
 
-# xdg-open will use these settings to determine how to open filetypes.
-# These .desktop entries can also be seen and changed in ~/.local/share/applications/
-
-text/x-shellscript=text.desktop;
-x-scheme-handler/magnet=torrent.desktop;
-application/x-bittorrent=torrent.desktop;
-x-scheme-handler/mailto=mail.desktop;
-text/plain=text.desktop;
-application/postscript=pdf.desktop;
-application/pdf=pdf.desktop;
-image/png=img.desktop;
-image/jpeg=img.desktop;
-image/gif=img.desktop;
-application/rss+xml=rss.desktop
-video/x-matroska=video.desktop
-video/mp4=video.desktop
-x-scheme-handler/lbry=lbry.desktop
-inode/directory=file.desktop
+[Added Associations]
+text/html=librewolf.desktop;
+image/jpeg=nsxiv.desktop;
+application/octet-stream=code.desktop;
+image/png=userapp-nsxiv-J5F4J3.desktop;
+image/gif=nsxiv.desktop;
+video/quicktime=mpv.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
