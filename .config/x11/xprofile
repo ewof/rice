@@ -4,7 +4,7 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
 xrandr --dpi 128		# Set DPI. User may want to use a larger number for larger screens. 96 128 192
-xrandr --output DP-3 --mode 1920x1080 --rate 240 --left-of DP-2;
+xrandr --output DP-3 --mode 2560x1440 --rate 240 --left-of DP-2;
 sleep 0.1;
 xrandr --output DP-2 --mode 2560x1440 --rate 240 --primary;
 sleep 0.1;
