@@ -1,1 +1,27 @@
-../discord/settings.json
+{
+  "BACKGROUND_COLOR": "#2c2d32",
+  "DESKTOP_TTI_DNSTCP_WARMUP": true,
+  "DESKTOP_TTI_EARLY_UPDATE_CHECK": true,
+  "DESKTOP_TTI_REMOVE_V8_CACHE_CLEAR": true,
+  "DESKTOP_TTI_UPDATE_BACKOFF_MAX_MS": 30000,
+  "IS_MAXIMIZED": false,
+  "IS_MINIMIZED": false,
+  "MINIMIZE_TO_TRAY": false,
+  "WINDOW_BOUNDS": {
+    "x": -5000,
+    "y": 36,
+    "width": 2494,
+    "height": 1388
+  },
+  "asyncVideoInputDeviceInit": false,
+  "chromiumSwitches": {},
+  "enableHardwareAcceleration": true,
+  "enableLibOpenH264Electron": false,
+  "offloadAdmControls": true,
+  "openH264Enabled": true,
+  "openasar": {
+    "setup": true
+  },
+  "trayBalloonShown": true,
+  "DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true
+}
