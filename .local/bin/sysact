@@ -14,21 +14,16 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 }
 
 lock(){
-    mpc pause
-    pauseallmpv
-    was_muted=0
-    if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q '\[MUTED\]'; then
-        was_muted=1
-    fi
-    if [ $was_muted -eq 0 ]; then
-        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    fi
-    kill -44 $(pidof dwmblocks)
-    slock
-    if [ $was_muted -eq 0 ]; then
-        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    fi
-    kill -44 $(pidof dwmblocks)
+	was_muted=0
+	if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q '\[MUTED\]'; then
+		was_muted=1
+	fi
+	mpc pause & pauseallmpv &
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+	pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
+	slock
+	[ "$was_muted" -eq 0 ] && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+	pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
 }
 
 case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew $WM\n🐻 hibernate\n🔃 reboot\n🖥️shutdown\n💤 sleep\n📺 display off" | dmenu -i -p 'Action: ')" in
