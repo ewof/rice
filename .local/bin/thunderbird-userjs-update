@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Aaply HorlogeSkynet thunderbird-user.js plus ~/.config/thunderbird/larbs.js to the default thunderbird profile (same idea as arkenfox + larbs.js).
+
+tbdir="${HOME}/.thunderbird"
+overrides="${XDG_CONFIG_HOME:-$HOME/.config}/thunderbird/larbs.js"
+ini="$tbdir/profiles.ini"
+
+[ -f "$ini" ] || exit 0
+[ -f "$overrides" ] || exit 1
+
+# prefer the profile locked to the current Thunderbird install.
+rel="$(awk '
+	/^\[Install/ { ininst=1; next }
+	/^\[/ { ininst=0 }
+	ininst && /^Default=/ { sub(/^Default=/, ""); print; exit }
+' "$ini")"
+
+if [ -z "$rel" ]; then
+	rel="$(awk '
+		/^\[Profile/ { p=1; def=0; path="" }
+		p && /^Default=1/ { def=1 }
+		p && /^Path=/ { sub(/^Path=/, ""); path=$0 }
+		p && /^\[/ && !/^\[Profile/ {
+			if (def && path) { print path; exit }
+			p=0
+		}
+		END { if (def && path) print path }
+	' "$ini")"
+fi
+
+[ -n "$rel" ] || exit 0
+
+case "$rel" in
+	/*) pdir="$rel" ;;
+	*) pdir="$tbdir/$rel" ;;
+esac
+
+[ -d "$pdir" ] || exit 0
+
+tmp="$(mktemp)" || exit 1
+trap 'rm -f "$tmp"' EXIT
+curl -fsSL "https://raw.githubusercontent.com/HorlogeSkynet/thunderbird-user.js/master/user.js" > "$tmp" || exit 1
+cat "$tmp" "$overrides" > "$pdir/user.js"
+ln -sf "$overrides" "$pdir/user-overrides.js"
