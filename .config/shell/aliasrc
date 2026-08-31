@@ -29,7 +29,9 @@ alias \
 	yt="yt-dlp --embed-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ytt="yt --skip-download --write-thumbnail" \
-	ffmpeg="ffmpeg -hide_banner"
+	ffmpeg="ffmpeg -hide_banner" \
+	ncmpcpp="ncmpcpp-ueberzug" \
+    nsxiv="nsxiv -a"
 
 # Colorize commands when possible.
 alias \
