@@ -1,0 +1,79 @@
+/* Nord tint for libadwaita. Recolors Adwaita; does not replace its widget CSS.
+   Palette from Nordic / arcticicestudio Nord. */
+
+:root {
+  --accent-bg-color: #8fbcbb;
+  --accent-fg-color: #2e3440;
+  --accent-color: #8fbcbb;
+
+  --destructive-bg-color: #bf616a;
+  --destructive-fg-color: #eceff4;
+  --destructive-color: #bf616a;
+
+  --success-bg-color: #a3be8c;
+  --success-fg-color: #2e3440;
+  --success-color: #a3be8c;
+
+  --warning-bg-color: #ebcb8b;
+  --warning-fg-color: #2e3440;
+  --warning-color: #ebcb8b;
+
+  --error-bg-color: #bf616a;
+  --error-fg-color: #eceff4;
+  --error-color: #bf616a;
+
+  --window-bg-color: #3b4252;
+  --window-fg-color: #eceff4;
+
+  --view-bg-color: #2e3440;
+  --view-fg-color: #eceff4;
+
+  --headerbar-bg-color: #2e3440;
+  --headerbar-fg-color: #eceff4;
+  --headerbar-border-color: #2e3440;
+  --headerbar-backdrop-color: #3b4252;
+  --headerbar-shade-color: rgb(0 0 0 / 36%);
+  --headerbar-darker-shade-color: rgb(0 0 0 / 90%);
+
+  --sidebar-bg-color: #2e3440;
+  --sidebar-fg-color: #eceff4;
+  --sidebar-backdrop-color: #292e39;
+  --sidebar-border-color: rgb(0 0 0 / 36%);
+  --sidebar-shade-color: rgb(0 0 0 / 25%);
+
+  --secondary-sidebar-bg-color: #292e39;
+  --secondary-sidebar-fg-color: #eceff4;
+  --secondary-sidebar-backdrop-color: #2e3440;
+  --secondary-sidebar-border-color: rgb(0 0 0 / 36%);
+  --secondary-sidebar-shade-color: rgb(0 0 0 / 25%);
+
+  --card-bg-color: #434c5e;
+  --card-fg-color: #eceff4;
+  --card-shade-color: rgb(0 0 0 / 36%);
+
+  --dialog-bg-color: #3b4252;
+  --dialog-fg-color: #eceff4;
+
+  --popover-bg-color: #3b4252;
+  --popover-fg-color: #eceff4;
+  --popover-shade-color: rgb(0 0 0 / 25%);
+
+  --thumbnail-bg-color: #434c5e;
+  --thumbnail-fg-color: #eceff4;
+  --overview-bg-color: #2e3440;
+  --overview-fg-color: #eceff4;
+
+  --active-toggle-bg-color: #434c5e;
+  --active-toggle-fg-color: #eceff4;
+
+  --shade-color: rgb(0 0 0 / 25%);
+  --scrollbar-outline-color: rgb(0 0 0 / 50%);
+}
+
+@define-color theme_bg_color #3b4252;
+@define-color theme_fg_color #eceff4;
+@define-color theme_base_color #2e3440;
+@define-color theme_text_color #eceff4;
+@define-color theme_selected_bg_color #8fbcbb;
+@define-color theme_selected_fg_color #2e3440;
+@define-color borders #232831;
