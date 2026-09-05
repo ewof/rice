@@ -3,42 +3,82 @@
 # Module showing CPU load as a changing bars.
 # Just like in polybar.
 # Each bar represents amount of load on one core since
-# last run.
+# last run. Bars are always colored on a Nord scale:
+# green -> yellow -> orange -> red.
 
 # Cache in tmpfs to improve speed and reduce SSD load
 cache=/tmp/cpubarscache
 
+# Nord aurora (no purple)
+green="^c#a3be8c^"
+yellow="^c#ebcb8b^"
+orange="^c#d08770^"
+red="^c#bf616a^"
+rst="^d^"
+
 case $BLOCK_BUTTON in
 	2) setsid -f "$TERMINAL" -e htop ;;
-	3) notify-send "🪨 CPU load module" "Each bar represents
-one CPU core";;
+	3) notify-send " CPU load module" "Each bar represents
+one CPU core, colored by load:
+green, yellow, orange, red.";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 # id total idle
 stats=$(awk '/cpu[0-9]+/ {printf "%d %d %d\n", substr($1,4), ($2 + $3 + $4 + $5), $5 }' /proc/stat)
 [ ! -f $cache ] && echo "$stats" > "$cache"
-old=$(cat "$cache")
-printf "🪨"
-echo "$stats" | while read -r row; do
-	id=${row%% *}
-	rest=${row#* }
-	total=${rest%% *}
-	idle=${rest##* }
 
-	case "$(echo "$old" | awk '{if ($1 == id)
-		printf "%d\n", (1 - (idle - $3)  / (total - $2))*100 /12.5}' \
-		id="$id" total="$total" idle="$idle")" in
+lvls=$(printf '%s\n' "$stats" | awk -v cache="$cache" '
+BEGIN {
+	while ((getline line < cache) > 0) {
+		split(line, a)
+		otot[a[1]] = a[2] + 0
+		oidle[a[1]] = a[3] + 0
+	}
+	close(cache)
+}
+{
+	dt = $2 - otot[$1]
+	di = $3 - oidle[$1]
+	lvl = 0
+	if (dt > 0)
+		lvl = int((1 - di / dt) * 100 / 12.5)
+	if (lvl < 0) lvl = 0
+	if (lvl > 8) lvl = 8
+	printf "%s%d", (NR > 1 ? " " : ""), lvl
+}
+')
 
-		"0") printf "▁";;
-		"1") printf "▂";;
-		"2") printf "▃";;
-		"3") printf "▄";;
-		"4") printf "▅";;
-		"5") printf "▆";;
-		"6") printf "▇";;
-		"7") printf "█";;
-		"8") printf "█";;
+color_lvl() {
+	case $1 in
+		0|1) printf '%s' "$green" ;;
+		2|3) printf '%s' "$yellow" ;;
+		4|5) printf '%s' "$orange" ;;
+		*) printf '%s' "$red" ;;
 	esac
-done; printf "\\n"
+}
+
+printf ' '
+prev=""
+for l in $lvls; do
+	case $l in
+		0) ch="▁" ;;
+		1) ch="▂" ;;
+		2) ch="▃" ;;
+		3) ch="▄" ;;
+		4) ch="▅" ;;
+		5) ch="▆" ;;
+		6) ch="▇" ;;
+		7|8) ch="█" ;;
+		*) ch="▁" ;;
+	esac
+	col=$(color_lvl "$l")
+	if [ "$col" != "$prev" ]; then
+		[ -n "$prev" ] && printf '%s' "$rst"
+		printf '%s' "$col"
+		prev=$col
+	fi
+	printf '%s' "$ch"
+done
+printf '%s\n' "$rst"
 echo "$stats" > "$cache"

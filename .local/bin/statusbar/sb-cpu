@@ -1,17 +1,46 @@
 #!/bin/sh
 
+# Nord aurora: green -> yellow -> orange -> red
+green="^c#a3be8c^"
+yellow="^c#ebcb8b^"
+orange="^c#d08770^"
+red="^c#bf616a^"
+rst="^d^"
+
 case $BLOCK_BUTTON in
 	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd,%cpu | awk '{cmd[$1]+=$2} END {for (i in cmd) print i, cmd[i]}' | sort -nrk2  | head)\\n(100% per core)" ;;
 	2) setsid -f "$TERMINAL" -e htop ;;
-	3) notify-send "🖥 CPU module " "\- Shows CPU temperature.
+	3) notify-send "🖥 CPU module " "\- Shows CPU temperature (Nord scale).
+- Green <70°C, yellow <80°C, orange <90°C, red ≥90°C.
 - Click to show intensive processes.
 - Middle click to open htop." ;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 sensors="$(sensors)"
-temp="${sensors#* [-+]}"
-sign="${sensors%"$temp"}"
-temp="${sign##* }${temp%% *}"
+# Prefer package/Tctl over the first sensor (often nvme/gpu).
+temp=$(printf '%s\n' "$sensors" | awk '
+	$1 == "Tctl:" || $1 == "Tdie:" { print $2; found = 1; exit }
+	$1 == "Package" && $2 == "id" { print $4; found = 1; exit }
+	$1 == "Core" && $2 == "0:" { c0 = $3 }
+	!first && $2 ~ /^[+-][0-9]/ { first = $2 }
+	END { if (!found) print (c0 != "" ? c0 : first) }
+')
 
-printf "🌡 %s\n" "$temp"
+# Integer °C for thresholds (+66.8°C -> 66)
+n=${temp#[+-]}
+n=${n%%.*}
+n=${n%%[!0-9]*}
+
+col="$green"
+if [ -n "$n" ]; then
+	if [ "$n" -ge 90 ]; then
+		col="$red"
+	elif [ "$n" -ge 80 ]; then
+		col="$orange"
+	elif [ "$n" -ge 70 ]; then
+		col="$yellow"
+	fi
+fi
+
+printf " %s%s%s\n" "$col" "$temp" "$rst"
