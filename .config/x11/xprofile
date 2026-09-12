@@ -32,5 +32,7 @@ sleep 2 && xlsw | grep 'Pentablet' | awk '{print $1}' | while read _windowID; do
 wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; kill -44 $(pidof dwmblocks)
 wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; kill -44 $(pidof dwmblocks)
 
+export LD_PRELOAD="/usr/lib64/libgtk-nocsd.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
