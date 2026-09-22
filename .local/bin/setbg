@@ -7,7 +7,16 @@
 #	If wal is installed, also generates a colorscheme.
 
 # Location of link to wallpaper link.
-bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+# Location of wallpaper link.
+bgdir="${XDG_DATA_HOME:-$HOME/.local/share}"
+bgloc="$bgdir/bg"
+wallpaper_mode="--zoom"
+
+# Use bg-tile instead of bg when it exists.
+if [ -e "$bgdir/bg-tile" ]; then
+	bgloc="$bgdir/bg-tile"
+	wallpaper_mode="--tile"
+fi
 
 # Configuration files of applications that have their themes changed by pywal.
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
@@ -36,6 +45,6 @@ else
 	[ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
 fi
 
-xwallpaper --zoom "$bgloc"
+xwallpaper "$wallpaper_mode" "$bgloc"
 # If running, dwm hit the key to refresh the color scheme.
 pidof dwm >/dev/null && xdotool key super+F5
