@@ -5,9 +5,9 @@
 
 xrandr --dpi 128		# Set DPI. User may want to use a larger number for larger screens. 96 128 192
 xrandr --output DP-3 --mode 2560x1440 --rate 240 --left-of DP-2;
-sleep 0.1;
+sleep 1.0;
 xrandr --output DP-2 --mode 2560x1440 --rate 240 --primary;
-sleep 0.1;
+sleep 1.0;
 xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --left-of DP-3 --reflect normal
 
 setbg &			# set the background with the `setbg` script
