@@ -78,5 +78,11 @@ bindkey -M vicmd '^[[P' vi-delete-char
 bindkey -M vicmd '^e' edit-command-line
 bindkey -M visual '^[[P' vi-delete
 
+# Pinentry in tmux draws on this pane's tty. Set it per shell, not via tmux update-environment.
+if [[ -t 1 ]]; then
+	export GPG_TTY="$(tty)"
+	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
+
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
