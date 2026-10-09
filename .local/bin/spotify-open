@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+"""Open Spotify links through MPRIS; Spotify's CLI can ignore links while running."""
+import os
+import subprocess
+import sys
+import time
+
+args = sys.argv[1:]
+if not args:
+    os.execv('/usr/bin/spotify', ['spotify'])
+uri = args[0]
+if not uri.startswith(('spotify:', 'https://open.spotify.com/')):
+    os.execv('/usr/bin/spotify', ['spotify', *args])
+
+
+def send(method, *values):
+    try:
+        result = subprocess.run([
+            'dbus-send', '--session', '--dest=org.mpris.MediaPlayer2.spotify',
+            '--type=method_call', '--print-reply', '/org/mpris/MediaPlayer2',
+            method, *values,
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
+        return result.returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+
+
+def open_link():
+    if not send('org.mpris.MediaPlayer2.Player.OpenUri', 'string:' + uri):
+        return False
+    send('org.mpris.MediaPlayer2.Raise')
+    return True
+
+
+if open_link():
+    sys.exit(0)
+subprocess.Popen(['/usr/bin/spotify', '--uri=' + uri],
+                 stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                 stderr=subprocess.DEVNULL, start_new_session=True)
+for _ in range(30):
+    time.sleep(0.5)
+    if open_link():
+        sys.exit(0)
+sys.exit('Spotify launched, but its link navigation interface did not become ready.')

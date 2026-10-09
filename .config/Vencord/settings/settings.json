@@ -755,9 +755,6 @@
         "DevCompanion": {
             "enabled": false
         },
-        "OGAS": {
-            "enabled": false
-        },
         "MoreQuickReactions": {
             "enabled": false
         },
