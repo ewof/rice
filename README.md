@@ -47,3 +47,9 @@ or clone the repo files directly to your home directory and install the
 ## Default Desktop Artwork
 
 Thomas Thiemeyer's *The Road to Samarkand* ([fb](https://www.facebook.com/t.thiemeyer/), [insta](https://www.instagram.com/tthiemeyer/))
+
+## Workstation system configuration
+
+[Keychron M6/Xorg configuration](system/keychron/) includes the working motion
+batching patch, 2× horizontal-scroll plugin, saved Xorg configuration, and a
+reproducible driver build. Diagnostic programs and recordings are excluded.

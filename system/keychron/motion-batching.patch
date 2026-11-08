@@ -1,0 +1,132 @@
+diff --git a/src/xf86libinput.c b/src/xf86libinput.c
+index dec25e3..c267f9d 100644
+--- a/src/xf86libinput.c
++++ b/src/xf86libinput.c
+@@ -1644,31 +1644,26 @@ xf86libinput_device_control(DeviceIntPtr dev, int mode)
+ }
+ 
+ static void
+-xf86libinput_handle_motion(InputInfoPtr pInfo, struct libinput_event_pointer *event)
++xf86libinput_post_motion(InputInfoPtr pInfo, double x, double y, double ux, double uy)
+ {
+-	DeviceIntPtr dev = pInfo->dev;
+-	struct xf86libinput *driver_data = pInfo->private;
+-	ValuatorMask *mask = driver_data->valuators;
+-	double x, y;
+-
+-	if ((driver_data->capabilities & CAP_POINTER) == 0)
+-		return;
+-
+-	x = libinput_event_pointer_get_dx(event);
+-	y = libinput_event_pointer_get_dy(event);
+-
+-	valuator_mask_zero(mask);
+-
+-	{
+-		double ux, uy;
+-
+-		ux = libinput_event_pointer_get_dx_unaccelerated(event);
+-		uy = libinput_event_pointer_get_dy_unaccelerated(event);
++    struct xf86libinput *driver_data = pInfo->private;
++    ValuatorMask *mask = driver_data->valuators;
++    if ((driver_data->capabilities & CAP_POINTER) == 0)
++        return;
++    valuator_mask_zero(mask);
++    valuator_mask_set_unaccelerated(mask, 0, x, ux);
++    valuator_mask_set_unaccelerated(mask, 1, y, uy);
++    xf86PostMotionEventM(pInfo->dev, Relative, mask);
++}
+ 
+-		valuator_mask_set_unaccelerated(mask, 0, x, ux);
+-		valuator_mask_set_unaccelerated(mask, 1, y, uy);
+-	}
+-	xf86PostMotionEventM(dev, Relative, mask);
++static void
++xf86libinput_handle_motion(InputInfoPtr pInfo, struct libinput_event_pointer *event)
++{
++    xf86libinput_post_motion(pInfo,
++                            libinput_event_pointer_get_dx(event),
++                            libinput_event_pointer_get_dy(event),
++                            libinput_event_pointer_get_dx_unaccelerated(event),
++                            libinput_event_pointer_get_dy_unaccelerated(event));
+ }
+ 
+ static void
+@@ -2740,28 +2735,58 @@ out:
+ 	return event_handling;
+ }
+ 
++/* Batch only consecutive, already-dispatched Keychron motion. Flush before
++ * any other device/event, preserving clicks, scrolls and accelerated/raw totals.
++ * No timer or fixed rate limit is introduced.
++ */
+ static void
+ xf86libinput_read_input(InputInfoPtr pInfo)
+ {
+-	struct libinput *libinput = driver_context.libinput;
+-	int rc;
+-	struct libinput_event *event;
+-
+-	rc = libinput_dispatch(libinput);
+-	if (rc == -EAGAIN)
+-		return;
+-
+-	if (rc < 0) {
+-		xf86IDrvMsg(pInfo, X_ERROR,
+-			    "Error reading events: %s\n",
+-			    strerror(-rc));
+-		return;
+-	}
+-
+-	while ((event = libinput_get_event(libinput))) {
+-		if (xf86libinput_handle_event(event) == EVENT_HANDLED)
+-			libinput_event_destroy(event);
+-	}
++    struct libinput *libinput = driver_context.libinput;
++    struct libinput_event *event;
++    InputInfoPtr motion_info = NULL;
++    double x = 0, y = 0, ux = 0, uy = 0;
++    int rc = libinput_dispatch(libinput);
++
++    if (rc == -EAGAIN)
++        return;
++    if (rc < 0) {
++        xf86IDrvMsg(pInfo, X_ERROR, "Error reading events: %s\n", strerror(-rc));
++        return;
++    }
++
++    while ((event = libinput_get_event(libinput))) {
++        struct libinput_device *device = libinput_event_get_device(event);
++        InputInfoPtr current = NULL;
++        unsigned int vid = libinput_device_get_id_vendor(device);
++        unsigned int pid = libinput_device_get_id_product(device);
++
++        if (libinput_event_get_type(event) == LIBINPUT_EVENT_POINTER_MOTION &&
++            vid == 0x3434 && (pid == 0xd049 || pid == 0xd028)) {
++            current = xf86libinput_pick_device(libinput_device_get_user_data(device), event);
++            if (current && !current->dev->public.on)
++                current = NULL;
++        }
++
++        if (motion_info && motion_info != current) {
++            xf86libinput_post_motion(motion_info, x, y, ux, uy);
++            motion_info = NULL;
++            x = y = ux = uy = 0;
++        }
++        if (current) {
++            struct libinput_event_pointer *pointer = libinput_event_get_pointer_event(event);
++            motion_info = current;
++            x += libinput_event_pointer_get_dx(pointer);
++            y += libinput_event_pointer_get_dy(pointer);
++            ux += libinput_event_pointer_get_dx_unaccelerated(pointer);
++            uy += libinput_event_pointer_get_dy_unaccelerated(pointer);
++            libinput_event_destroy(event);
++        } else if (xf86libinput_handle_event(event) == EVENT_HANDLED) {
++            libinput_event_destroy(event);
++        }
++    }
++    if (motion_info)
++        xf86libinput_post_motion(motion_info, x, y, ux, uy);
+ }
+ 
+ /*
